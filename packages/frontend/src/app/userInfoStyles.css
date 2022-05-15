@@ -1,0 +1,45 @@
+.usersInfoBar {
+  display: flex;
+  flex-direction: column;
+  height: 360px;
+  width: 254px;
+}
+
+.userInfo {
+  height: 120px;
+  width: 250px;
+  background: bisque;
+  display: flex;
+  flex-wrap: wrap;
+  border: black solid 2px;
+  /*flex-direction: column;*/
+}
+
+.userAvatar {
+  height: 100px;
+  width: 90px;
+  margin: 8px;
+  border: 2px black solid;
+  background: white;
+}
+
+.userData {
+  display: flex;
+  flex-direction: column;
+}
+
+.userNickname {
+  height: 20px;
+  width: 140px;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+}
+
+.userIconBar {
+  width: 140px;
+  height: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
