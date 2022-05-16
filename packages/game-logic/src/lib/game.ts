@@ -1,8 +1,20 @@
-import { Field } from './field';
-import { Player } from './player';
+import { IField } from './field';
+import { IPlayer, Team } from './player';
 
-export class Game {
+export interface IGame {
+  winScore: number;
+  get field(): IField;
+  get players(): IPlayer[];
+
+  teamThatWon: Team | null;
+}
+
+export class Game implements IGame {
   winScore = 0;
+  teamThatWon = null;
 
-  constructor(public field: Field, public players: Player[]) {}
+  constructor(
+    public readonly field: IField,
+    public readonly players: IPlayer[]
+  ) {}
 }
