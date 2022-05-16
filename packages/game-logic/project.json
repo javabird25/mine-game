@@ -1,0 +1,32 @@
+{
+  "sourceRoot": "packages/game-logic/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/game-logic",
+        "main": "packages/game-logic/src/index.ts",
+        "tsConfig": "packages/game-logic/tsconfig.lib.json",
+        "assets": ["packages/game-logic/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/game-logic/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/game-logic"],
+      "options": {
+        "jestConfig": "packages/game-logic/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
