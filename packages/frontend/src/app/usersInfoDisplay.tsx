@@ -5,7 +5,10 @@ import fullMana from './img/FilledMana.svg'
 import emptyMana from './img/EmptyMana.svg'
 import './App.css';
 
-interface userInfo {
+const maxHealth = 3;
+const maxMana=5;
+
+interface IUserInfo {
   nickname: string;
   img: string;
   numberLife: number;
@@ -28,41 +31,37 @@ const testUser2 = {
   hisTurn: true
 }
 
-function usersInfoDisplay() {
+function UserInfoDisplay() {
   return (
     <div className='usersInfoBar'>
-      <UserInfo nickname={testUser.nickname} img={testUser.img} numberLife={testUser.numberLife}
-                numberMana={testUser.numberMana} hisTurn={testUser.hisTurn}/>
-      <UserInfo nickname={testUser2.nickname} img={testUser2.img} numberLife={testUser2.numberLife}
-                numberMana={testUser2.numberMana} hisTurn={testUser2.hisTurn}/>
+      <UserInfo userInfo={testUser}/>
+      <UserInfo userInfo={testUser2}/>
     </div>
   )
     ;
 }
 
-function UserInfo(props: userInfo) {
+function UserInfo({userInfo}:{ userInfo : IUserInfo}) {
+  const hearts = [...Array(maxHealth)].map((_, i) =>
+    <img src={userInfo.numberLife > i ? fullLife : emptyLife} key={i} alt='' height='23px' width='33px'/>)
+  const mana = [...Array(maxMana)].map((_, i) =>
+    <img src={userInfo.numberMana > i ? fullMana : emptyMana} alt='' height='30px' width='40px'/>)
   return (
     <div className="userInfo">
-      <img src={props.img} className="userAvatar" alt=''/>
+      <img src={userInfo.img} className="userAvatar" alt=''/>
       <div className='userData'>
         <p className="userNickname">
-          {props.nickname}
+          {userInfo.nickname}
         </p>
         <div className='userIconBar'>
-          <img src={props.numberLife > 0 ? fullLife : emptyLife} alt='' height='23px' width='33px'/>
-          <img src={props.numberLife > 1 ? fullLife : emptyLife} alt='' height='23px' width='33px'/>
-          <img src={props.numberLife > 2 ? fullLife : emptyLife} alt='' height='23px' width='33px'/>
+          {hearts}
         </div>
         <div className='userIconBar'>
-          <img src={props.numberMana > 0 ? fullMana : emptyMana} alt='' height='30px' width='40px'/>
-          <img src={props.numberMana > 1 ? fullMana : emptyMana} alt='' height='30px' width='40px'/>
-          <img src={props.numberMana > 2 ? fullMana : emptyMana} alt='' height='30px' width='40px'/>
-          <img src={props.numberMana > 3 ? fullMana : emptyMana} alt='' height='30px' width='40px'/>
-          <img src={props.numberMana > 4 ? fullMana : emptyMana} alt='' height='30px' width='40px'/>
+          {mana}
         </div>
       </div>
     </div>
   );
 }
 
-export default usersInfoDisplay();
+export default UserInfoDisplay;
